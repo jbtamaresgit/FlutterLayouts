@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_layouts/tab_page_main.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,10 +21,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text("Flutter Layouts"),),
-        body: Container(child: Text("I am your father", style:TextStyle(fontWeight: FontWeight.bold))),
-      ), 
+      home: TabPage()
     );
   }
 }

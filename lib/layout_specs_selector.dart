@@ -10,7 +10,7 @@ class LayoutSpecsSelector extends StatefulWidget{
     this.title,
     this.specs,
     this.onChangeSpec,
-    this.isDisabled
+    this.isDisabled = false
   });
 
   @override

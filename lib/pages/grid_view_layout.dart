@@ -35,10 +35,10 @@ class GridViewLayoutPageState extends State<GridViewLayoutPage>{
 
 
   Widget _buildBodyContent(){
-    List<Widget> items = new List<Widget>(_crossAxisCount);
+    List<Widget> items = new List<Widget>();
 
-    for(int x = 1; x <= _crossAxisCount; x++){
-      items.add(Icon(Icons.cake, size: 40.0));
+    for(int x = 0; x < _crossAxisCount; x++){
+      items.add(new Icon(Icons.cake, size: 40.0));
     }
 
 
@@ -46,15 +46,15 @@ class GridViewLayoutPageState extends State<GridViewLayoutPage>{
       return new GridView.count(
         crossAxisCount: _crossAxisCount,
         crossAxisSpacing: _crossAxisSpacing,
-        scrollDirection: Axis.horizontal,
-        children: items,
+        scrollDirection: Axis.vertical,
+        children: items
       );
     }
     else{
       return new GridView.count(
         crossAxisCount: _crossAxisCount,
         crossAxisSpacing: _crossAxisSpacing,
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         children: items
       );
     }
@@ -63,7 +63,8 @@ class GridViewLayoutPageState extends State<GridViewLayoutPage>{
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(appBar: MainAppBar(
+    return Scaffold(
+      appBar: MainAppBar(
       layoutType: LayoutType.gridView,
       bottom: PreferredSize(
         preferredSize: Size(0.0, 160.0),

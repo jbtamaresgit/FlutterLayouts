@@ -18,6 +18,13 @@ class LayoutSpecsInput extends StatefulWidget{
 class LayoutSpecsInputState extends State<LayoutSpecsInput>{
   final textController = TextEditingController(text: "1");
 
+  @override
+  void initState(){
+    super.initState();
+
+    textController.addListener(update);
+  }
+
   void update(){
     widget.onChangeSpec(textController.text);
     setState(() {});
@@ -31,13 +38,15 @@ class LayoutSpecsInputState extends State<LayoutSpecsInput>{
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
+            new Container(child: new Flexible(child:
             TextField(
-              controller: textController,
-              maxLines: 2,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            )
+                controller: textController,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )
+            ))
+           
           ],
         )
       ],

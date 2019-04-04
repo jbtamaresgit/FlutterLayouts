@@ -27,8 +27,8 @@ class GridViewLayoutSpecs extends StatelessWidget{
               specs: ['row', 'column'],
               onChangeSpec: onUpdateScrollDirection,
             ),
-            LayoutSpecsInput(title: 'Cross Axis Count',
-              onChangeSpec: onUpdateCrossAxisCount,
+            LayoutSpecsInput(title: 'Axis Count',
+              onChangeSpec: onUpdateCrossAxisCount ,
             )
           ],
         )),
@@ -36,8 +36,8 @@ class GridViewLayoutSpecs extends StatelessWidget{
           flex: 1,
           child: Column(
             children: <Widget>[
-              LayoutSpecsInput(title: 'Cross Axis Spacing',
-              onChangeSpec: onUpdateCrossAxisSpacing),
+              LayoutSpecsInput(title: 'Axis Spacing',
+              onChangeSpec: onUpdateCrossAxisSpacing )
             ],
           ))
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LayoutSpecsInput extends StatefulWidget{
   final String title;
@@ -15,7 +16,7 @@ class LayoutSpecsInput extends StatefulWidget{
 }
 
 class LayoutSpecsInputState extends State<LayoutSpecsInput>{
-  final textController = TextEditingController();
+  final textController = TextEditingController(text: "1");
 
   void update(){
     widget.onChangeSpec(textController.text);
@@ -33,6 +34,7 @@ class LayoutSpecsInputState extends State<LayoutSpecsInput>{
             TextField(
               controller: textController,
               maxLines: 2,
+              keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold),
             )

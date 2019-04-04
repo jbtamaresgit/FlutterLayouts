@@ -4,7 +4,7 @@ import 'package:flutter_layouts/layout_specs_input.dart';
 
 class GridViewLayoutSpecs extends StatelessWidget{
   final ValueChanged<String> onUpdateCrossAxisCount;
-  final ValueChanged<int> onUpdateCrossAxisSpacing;
+  final ValueChanged<String> onUpdateCrossAxisSpacing;
   final ValueChanged<int> onUpdateScrollDirection;
 
   GridViewLayoutSpecs({
@@ -36,18 +36,8 @@ class GridViewLayoutSpecs extends StatelessWidget{
           flex: 1,
           child: Column(
             children: <Widget>[
-              LayoutSpecsSelector(
-                title: 'Cross Axis Spacing',
-                specs:[
-                  'start',
-                  'end',
-                  'center',
-                  'space\nbetween',
-                  'space\naround',
-                  'space\nevenly'
-                ],
-                onChangeSpec: onUpdateCrossAxisSpacing,
-              )
+              LayoutSpecsInput(title: 'Cross Axis Spacing',
+              onChangeSpec: onUpdateCrossAxisSpacing),
             ],
           ))
       ],

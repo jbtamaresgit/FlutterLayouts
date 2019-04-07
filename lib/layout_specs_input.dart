@@ -26,6 +26,10 @@ class LayoutSpecsInputState extends State<LayoutSpecsInput>{
   }
 
   void update(){
+    if(int.tryParse(textController.text) <= 0 || textController.text.isEmpty){
+      textController.text = "1";
+    }
+
     widget.onChangeSpec(textController.text);
     setState(() {});
   }
@@ -43,6 +47,7 @@ class LayoutSpecsInputState extends State<LayoutSpecsInput>{
                 controller: textController,
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
+                inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                 style: TextStyle(fontWeight: FontWeight.bold),
               )
             ))

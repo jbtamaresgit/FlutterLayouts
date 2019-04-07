@@ -5,12 +5,14 @@ import 'package:flutter_layouts/layout_specs_input.dart';
 class GridViewLayoutSpecs extends StatelessWidget{
   final ValueChanged<String> onUpdateCrossAxisCount;
   final ValueChanged<String> onUpdateCrossAxisSpacing;
+  final ValueChanged<String> onUpdateNumberOfItems;
   final ValueChanged<int> onUpdateScrollDirection;
 
   GridViewLayoutSpecs({
     this.onUpdateCrossAxisCount,
     this.onUpdateCrossAxisSpacing,
-    this.onUpdateScrollDirection
+    this.onUpdateScrollDirection,
+    this.onUpdateNumberOfItems
   });
 
   @override
@@ -37,7 +39,9 @@ class GridViewLayoutSpecs extends StatelessWidget{
           child: Column(
             children: <Widget>[
               LayoutSpecsInput(title: 'Axis Spacing',
-              onChangeSpec: onUpdateCrossAxisSpacing )
+              onChangeSpec: onUpdateCrossAxisSpacing ),
+              LayoutSpecsInput(title: 'Item Count',
+                onChangeSpec: onUpdateNumberOfItems)
             ],
           ))
       ],

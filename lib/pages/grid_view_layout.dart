@@ -13,6 +13,7 @@ class GridViewLayoutPage extends StatefulWidget{
 class GridViewLayoutPageState extends State<GridViewLayoutPage>{
   bool _isRow = true;
   int _crossAxisCount = 1;
+  int _numberOfItems = 1;
   double _crossAxisSpacing = 1;
 
   void _updateLayout(int index){
@@ -33,11 +34,21 @@ class GridViewLayoutPageState extends State<GridViewLayoutPage>{
     });
   }
 
+  void _updateNumberOfItems(String numberOfItems){
+    setState((){
+      _numberOfItems = int.tryParse(numberOfItems);
+    });
+  }
+
 
   Widget _buildBodyContent(){
     List<Widget> items = new List<Widget>();
 
-    for(int x = 0; x < _crossAxisCount; x++){
+    if(_numberOfItems <= 0 || _numberOfItems == null){
+      _numberOfItems = 1;
+    }
+
+    for(int x = 0; x < _numberOfItems; x++){
       items.add(new Icon(Icons.cake, size: 40.0));
     }
 
@@ -78,7 +89,8 @@ class GridViewLayoutPageState extends State<GridViewLayoutPage>{
     return GridViewLayoutSpecs(
       onUpdateCrossAxisCount: _updateCrossAxisCount,
       onUpdateCrossAxisSpacing: _updateCrossAxisSpacing,
-      onUpdateScrollDirection: _updateLayout);
+      onUpdateScrollDirection: _updateLayout,
+      onUpdateNumberOfItems:  _updateNumberOfItems);
   }
 
 

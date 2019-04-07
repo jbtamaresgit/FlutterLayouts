@@ -57,7 +57,7 @@ class GridViewLayoutPageState extends State<GridViewLayoutPage>{
       return new GridView.count(
         crossAxisCount: _crossAxisCount,
         crossAxisSpacing: _crossAxisSpacing,
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         children: items
       );
     }
@@ -65,7 +65,7 @@ class GridViewLayoutPageState extends State<GridViewLayoutPage>{
       return new GridView.count(
         crossAxisCount: _crossAxisCount,
         crossAxisSpacing: _crossAxisSpacing,
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.vertical,
         children: items
       );
     }

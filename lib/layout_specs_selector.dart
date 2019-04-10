@@ -5,12 +5,16 @@ class LayoutSpecsSelector extends StatefulWidget{
   final List<String> specs;
   final ValueChanged<int> onChangeSpec;
   final bool isDisabled;
+  final bool isOnListView;
+  final ValueChanged<bool> isListViewFixedIntent;
 
   LayoutSpecsSelector({
     this.title,
     this.specs,
     this.onChangeSpec,
-    this.isDisabled = false
+    this.isDisabled = false,
+    this.isOnListView = false,
+    this.isListViewFixedIntent
   });
 
   @override
@@ -46,23 +50,43 @@ class LayoutSpecsSelectorState extends State<LayoutSpecsSelector>{
             IconButton(
               padding: EdgeInsets.all(4.0),
               icon: Icon(Icons.arrow_back),
-              onPressed: widget.isDisabled ? null : previous),
+              disabledColor: Colors.grey,
+              onPressed: isWidgetDisabledPrevious()),
             Text(
               widget.specs[index],
               maxLines: 2,
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold,
-                  color: widget.isDisabled ? Colors.grey : Colors.black,
+              color: widget.isDisabled ? Colors.grey : Colors.black,
               ),
             ),
             IconButton(
               padding: EdgeInsets.all(4.0),
               icon: Icon(Icons.arrow_forward),
-              onPressed: widget.isDisabled ? null : next,
+              disabledColor: Colors.grey,
+              onPressed: isWidgetDisabledNext(),
             )
           ],
         )
       ],)
     );
   }
+
+  Function isWidgetDisabledPrevious(){
+    if(widget.isOnListView && widget.isListViewFixedIntent){
+      return null;
+    }
+
+    return widget.isDisabled ? null : previous;
+  }
+
+  Function isWidgetDisabledNext(){
+    if(widget.isOnListView && widget.isListViewFixedIntent){
+      return null;
+    }
+
+    return widget.isDisabled ? null : previous;
+  }
+
+
 }

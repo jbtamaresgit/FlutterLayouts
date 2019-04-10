@@ -10,11 +10,19 @@ class ListViewLayoutPage extends StatefulWidget{
   ListViewLayoutPageState createState () => new ListViewLayoutPageState();
 }
 
+class ScrollPhysicsConsts{
+  static const int _never = 0;
+  static const int _bounce = 1;
+  static const int _clamp = 2;
+  static const int _fixedExtent = 3;
+}
+
 class ListViewLayoutPageState extends State<ListViewLayoutPage>{
   bool _isRow = true;
   bool _isReverseScroll = false;
   ScrollPhysics _scrollPhysics = NeverScrollableScrollPhysics();
   int _numberOfItems = 1;
+  int _scrollPhysicsItem = 0;
 
   void _updateLayout(int index){
     setState((){
@@ -40,15 +48,20 @@ class ListViewLayoutPageState extends State<ListViewLayoutPage>{
     });
   }
 
+
   ScrollPhysics _scrollPhysicsSelector(index){
     switch (index){
       case 0:
+        _scrollPhysicsItem = ScrollPhysicsConsts._never;
         return NeverScrollableScrollPhysics();
       case 1:
+        _scrollPhysicsItem = ScrollPhysicsConsts._bounce;
         return BouncingScrollPhysics();
       case 2:
+        _scrollPhysicsItem = ScrollPhysicsConsts._clamp;
         return ClampingScrollPhysics();
       case 3:
+        _scrollPhysicsItem = ScrollPhysicsConsts._fixedExtent;
         return FixedExtentScrollPhysics();
     }
 
@@ -77,6 +90,9 @@ class ListViewLayoutPageState extends State<ListViewLayoutPage>{
       onUpdateScrollPhysics: _updateScrollPhysics);
   }
 
+  FixedExtentScrollController _fixedExtentScrollController =
+    new FixedExtentScrollController();
+
   Widget _buildBodyContent(){
     List<Widget> items = new List<Widget>();
 
@@ -88,17 +104,33 @@ class ListViewLayoutPageState extends State<ListViewLayoutPage>{
       items.add(new Icon(Icons.cake, size: 40.0));
     }
 
-    if(_isRow){
-      return new ListView.custom(
-        scrollDirection: Axis.horizontal,
+    if(_isRow && _scrollPhysicsItem == ScrollPhysicsConsts._fixedExtent){
+      return new ListWheelScrollView(
+        controller: _fixedExtentScrollController,
+        physics: _scrollPhysics,
+        children: items,
+        itemExtent: 60.0
+      );
+    }
+    else if(_isRow){
+       return new ListView.custom(
+        scrollDirection: Axis.vertical,
         physics: _scrollPhysics,
         reverse: _isReverseScroll,
         childrenDelegate: SliverChildListDelegate(items),
       );
     }
+    else if(!_isRow && _scrollPhysicsItem == ScrollPhysicsConsts._fixedExtent){
+      return new ListWheelScrollView(
+        controller: _fixedExtentScrollController,
+        physics: _scrollPhysics,
+        children: items,
+        itemExtent: 60.0
+      );
+    }
     else{
       return new ListView.custom(
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         physics: _scrollPhysics,
         reverse: _isReverseScroll,
         childrenDelegate: SliverChildListDelegate(items),

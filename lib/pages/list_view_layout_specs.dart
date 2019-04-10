@@ -44,7 +44,7 @@ class ListViewLayoutSpecs extends StatelessWidget{
             children: <Widget>[
               LayoutSpecsSelector(
                 title: "Scroll Physics",
-                specs: ['Never','Bounce', 'Clamp', 'Fixed Intent'],
+                specs: ['Never','Bounce', 'Clamp', 'Fixed Extent'],
                 onChangeSpec: onUpdateScrollPhysics,
               ),
               LayoutSpecsInput(

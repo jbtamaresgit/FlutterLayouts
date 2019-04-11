@@ -8,7 +8,7 @@ class ListViewLayoutSpecs extends StatelessWidget{
   final ValueChanged<int> onUpdateIsReverseScroll;
   final ValueChanged<int> onUpdateScrollPhysics;
   final ValueChanged<String> onUpdateNumberOfItems;
-  final ValueChanged<bool> onUpdateIsFixedExtent;
+  final bool onUpdateIsFixedExtent;
 
   ListViewLayoutSpecs({
     this.onUpdateScrollDirection,
@@ -32,14 +32,14 @@ class ListViewLayoutSpecs extends StatelessWidget{
                 title: 'Scroll Direction',
                 specs: ['row', 'column'],
                 onChangeSpec: onUpdateScrollDirection,
-                isListViewFixedIntent: onUpdateIsFixedExtent,
+                isListViewFixedExtent: onUpdateIsFixedExtent,
                 isOnListView: true,
               ),
               LayoutSpecsSelector(
                 title: 'Reverse Scroll Direction',
                 specs: ['True', 'False'],
                 isOnListView: true,
-                isListViewFixedIntent: onUpdateIsFixedExtent,
+                isListViewFixedExtent: onUpdateIsFixedExtent,
                 onChangeSpec: onUpdateIsReverseScroll,
               )
             ],

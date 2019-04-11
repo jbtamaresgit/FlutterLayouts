@@ -6,7 +6,7 @@ class LayoutSpecsSelector extends StatefulWidget{
   final ValueChanged<int> onChangeSpec;
   final bool isDisabled;
   final bool isOnListView;
-  final ValueChanged<bool> isListViewFixedIntent;
+  final bool isListViewFixedExtent;
 
   LayoutSpecsSelector({
     this.title,
@@ -14,7 +14,7 @@ class LayoutSpecsSelector extends StatefulWidget{
     this.onChangeSpec,
     this.isDisabled = false,
     this.isOnListView = false,
-    this.isListViewFixedIntent
+    this.isListViewFixedExtent
   });
 
   @override
@@ -23,6 +23,7 @@ class LayoutSpecsSelector extends StatefulWidget{
 
 class LayoutSpecsSelectorState extends State<LayoutSpecsSelector>{
   int index = 0;
+  bool fixedIntent = false;
 
   void update() {
     widget.onChangeSpec(index);
@@ -73,7 +74,7 @@ class LayoutSpecsSelectorState extends State<LayoutSpecsSelector>{
   }
 
   Function isWidgetDisabledPrevious(){
-    if(widget.isOnListView && widget.isListViewFixedIntent){
+    if(widget.isOnListView && widget.isListViewFixedExtent){
       return null;
     }
 
@@ -81,7 +82,7 @@ class LayoutSpecsSelectorState extends State<LayoutSpecsSelector>{
   }
 
   Function isWidgetDisabledNext(){
-    if(widget.isOnListView && widget.isListViewFixedIntent){
+    if(widget.isOnListView && widget.isListViewFixedExtent){
       return null;
     }
 

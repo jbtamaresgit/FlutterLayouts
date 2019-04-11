@@ -20,6 +20,7 @@ class ScrollPhysicsConsts{
 class ListViewLayoutPageState extends State<ListViewLayoutPage>{
   bool _isRow = true;
   bool _isReverseScroll = false;
+  bool _isFixedExtent = false;
   ScrollPhysics _scrollPhysics = NeverScrollableScrollPhysics();
   int _numberOfItems = 1;
   int _scrollPhysicsItem = 0;
@@ -50,6 +51,7 @@ class ListViewLayoutPageState extends State<ListViewLayoutPage>{
 
 
   ScrollPhysics _scrollPhysicsSelector(index){
+    _isFixedExtent = false;
     switch (index){
       case 0:
         _scrollPhysicsItem = ScrollPhysicsConsts._never;
@@ -61,6 +63,7 @@ class ListViewLayoutPageState extends State<ListViewLayoutPage>{
         _scrollPhysicsItem = ScrollPhysicsConsts._clamp;
         return ClampingScrollPhysics();
       case 3:
+        _isFixedExtent = true;
         _scrollPhysicsItem = ScrollPhysicsConsts._fixedExtent;
         return FixedExtentScrollPhysics();
     }
@@ -87,7 +90,8 @@ class ListViewLayoutPageState extends State<ListViewLayoutPage>{
       onUpdateIsReverseScroll: _updateReverseScroll,
       onUpdateNumberOfItems: _updateNumberOfItems,
       onUpdateScrollDirection: _updateLayout,
-      onUpdateScrollPhysics: _updateScrollPhysics);
+      onUpdateScrollPhysics: _updateScrollPhysics,
+      onUpdateIsFixedExtent: _isFixedExtent);
   }
 
   FixedExtentScrollController _fixedExtentScrollController =

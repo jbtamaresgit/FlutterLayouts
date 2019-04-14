@@ -23,20 +23,33 @@ class StackViewLayoutPageState extends State<StackViewLayoutPage>{
 
 
   Widget _buildBodyContent(){
-    return new Stack(alignment: const Alignment(0.0, 0.0),
+    return new Stack(
     children: <Widget>[
       new Container(
         color: Colors.black,
+        height: 500.0,
+        width: 500.0,
         child: new Text('This is the bottom widget', 
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),)
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white))
       ),
-      new Container(
+      Align(
+        alignment: Alignment.bottomRight,
+        child: new Container(
         color: Colors.red,
         height: 300.0,
         width: 300.0,
         child: new Text('This is the middle widget',
         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)
-        ),)
+        ))),
+      Align(
+        alignment: Alignment.bottomRight,
+        child: new Container(
+        color: Colors.white,
+        height: 150.0,
+        width: 150.0,
+        child: new Text('This is the top widget',
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))
+      ))
     ],);
   }
 }

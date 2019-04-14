@@ -3,6 +3,7 @@ import 'package:flutter_layouts/layout_type.dart';
 import 'package:flutter_layouts/pages/row_column_layout.dart';
 import 'package:flutter_layouts/pages/grid_view_layout.dart';
 import 'package:flutter_layouts/pages/list_view_layout.dart';
+import 'package:flutter_layouts/pages/stack_view_layout.dart';
 
 
 class TabPage extends StatefulWidget{
@@ -33,7 +34,7 @@ class _TabPageState extends State<TabPage>{
       case LayoutType.listView:
         return ListViewLayoutPage();
       case LayoutType.stackView:
-        return null;
+        return StackViewLayoutPage();
     }
 
     return null;
